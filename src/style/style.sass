@@ -1,0 +1,47 @@
+@import "./variables"
+
+%flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+%grid
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr))
+  grid-gap: 20px
+  grid-auto-flow: dense
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+body
+  height: 100vh
+
+.container
+  display: flex
+  flex-direction: column
+  height: 100%
+  max-width: $max-width
+  margin: 0 auto
+  background-color: $main-background-color
+.problem
+  @extend %flexCenter
+
+.benefits
+  @extend %flexCenter
+
+.social-prof
+  @extend %flexCenter
+
+.call
+  @extend %flexCenter
+
+.btn
+  background-color: $main-buttons-color
+.modal
+  width: 100%
+  height: 100%
+  background-color: rgb(0,0,0,0.5)
+  display: none
+  &-show
+    display: block
