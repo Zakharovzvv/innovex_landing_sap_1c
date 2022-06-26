@@ -1,9 +1,19 @@
-{
-  "problem": {
+[
+  {
+    "sectionName": "problem",
+    "className": [
+      "section",
+      "problem"
+    ],
     "header": "Проблемы",
     "description": "Описание проблемы"
   },
-  "benefits": {
+  {
+    "sectionName": "benefits",
+    "className": [
+      "section",
+      "benefits"
+    ],
     "header": "Выгоды",
     "description": "Описание выгоды",
     "list": [
@@ -15,7 +25,12 @@
       "Выгода6"
     ]
   },
-  "socialProf": {
+  {
+    "sectionName": "social-prof",
+    "className": [
+      "section",
+      "social-prof"
+    ],
     "header": "Подтверждение",
     "description": "Описание подтверждения",
     "list": [
@@ -28,6 +43,15 @@
         "description": "Описание подтверждения2"
       }
     ]
+  },
+  {
+    "sectionName": "call",
+    "className": [
+      "section",
+      "call"
+    ],
+    "header": "Хочу",
+    "description": "Описание хочу"
   }
-}
+]
 

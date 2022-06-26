@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb', 'prettier', 'eslint:recommended'],
+  extends: [
+    'airbnb',
+    'prettier',
+    'eslint:recommended',
+    'plugin:import/recommended',
+  ],
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 13,
@@ -16,11 +21,17 @@ module.exports = {
     'no-console': 'warn',
     'func-names': 'off',
     'no-process-exit': 'off',
+    'import/extensions': ['error', 'ignorePackages'],
+    'import/no-unresolved': 'off',
   },
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
-      extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/typescript',
+        'plugin:@typescript-eslint/eslint-recommended',
+      ],
       plugins: ['@typescript-eslint'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
