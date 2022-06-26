@@ -1,13 +1,13 @@
 {
   "name": "innovex_landing_sap_1c",
   "version": "1.0.0",
-  "description": "",
+  "description": "Landing page: Migration form SAP to 1C",
   "main": "index.ts",
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack"
   },
-  "author": "",
+  "author": "Vladimir Zakharov",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.5",
