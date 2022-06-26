@@ -1,10 +1,10 @@
 import './style/style.sass';
 import content from './assets/content.json';
 import {
-  Component,
-  SectionContent,
-  Sections,
-  // eslint-disable-next-line import/extensions
+	Component,
+	SectionContent,
+	Sections,
+	// eslint-disable-next-line import/extensions
 } from './components/BaseHTMLComponent';
 
 // function htmlComponent(componentType: string, classNames: string[] = []) {
@@ -32,48 +32,42 @@ import {
 
 // function btnClickHandler(e) {}
 
-function setContent(data: Sections) {
-  const fragment = document.createDocumentFragment();
-  data.map((el: SectionContent) => {
-    const section = new Component(fragment, {
-      className: el.className,
-    });
-    section.render();
+function setContent(data: Sections, container: any) {
 
-    new Component(section.el, {
-      className: [`${el.sectionName}-title`],
-      tag: 'h1',
-    })
-      .toHTML(el.header)
-      .render();
-    new Component(section.el, {
-      className: [`${el.sectionName}-description`],
-      tag: 'h4',
-    })
-      .toHTML(el.header)
-      .render();
-    return section;
-  });
-  const container = document.querySelector('.container');
-  container.appendChild(fragment);
+	data.map((el: SectionContent) => {
+		const section = new Component(container, {
+			className: el.className,
+		});
+		section.render();
+
+		new Component(section.el, {
+			className: [`${el.sectionName}-title`],
+			tag: 'h1',
+		})
+			.toHTML(el.header)
+			.render();
+		new Component(section.el, {
+			className: [`${el.sectionName}-description`],
+			tag: 'h4',
+		})
+			.toHTML(el.header)
+			.render();
+		return section;
+	});
+
 }
 
-async function fetchData() {
-  // const response = await axios.get<Sections>('content.json');
-  await fetch(content.toString())
-    .then((response) => response.json())
-    .then((data) => setContent(data))
-    .catch((e) => {
-      console.log(e);
-    });
-}
 
 function init() {
-  fetchData();
+	const fragment = document.createDocumentFragment();
+	setContent(content, fragment);
+	return fragment;
 }
 
 function renderApp() {
-  init();
+	const app = init();
+	const container = document.querySelector('.container');
+	container.appendChild(app);
 }
 
 renderApp();

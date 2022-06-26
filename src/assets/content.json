@@ -1,13 +1,12 @@
-[
-  {
-    "sectionName": "problem",
-    "className": [
-      "section",
-      "problem"
-    ],
-    "header": "Проблемы",
-    "description": "Описание проблемы"
-  },
+[{
+  "sectionName": "problem",
+  "className": [
+    "section",
+    "problem"
+  ],
+  "header": "Проблемы",
+  "description": "Описание проблемы"
+},
   {
     "sectionName": "benefits",
     "className": [
