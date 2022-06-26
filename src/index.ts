@@ -1,9 +1,9 @@
 import './style/style.sass';
-import axios from 'axios';
+import content from './assets/content.json';
 import {
   Component,
-  Sections,
   SectionContent,
+  Sections,
   // eslint-disable-next-line import/extensions
 } from './components/BaseHTMLComponent';
 
@@ -59,8 +59,13 @@ function setContent(data: Sections) {
 }
 
 async function fetchData() {
-  const response = await axios.get<Sections>('content.json');
-  setContent(response.data);
+  // const response = await axios.get<Sections>('content.json');
+  await fetch(content.toString())
+    .then((response) => response.json())
+    .then((data) => setContent(data))
+    .catch((e) => {
+      console.log(e);
+    });
 }
 
 function init() {

@@ -4,8 +4,8 @@
   "description": "Landing page: Migration form SAP to 1C",
   "main": "index.ts",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode=production --open",
+    "build": "cross-env NODE_ENV=production webpack --mode=production --stats-error-details"
   },
   "author": "Vladimir Zakharov",
   "license": "ISC",
@@ -44,6 +44,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "axios": "^0.27.2"
+    "mini-css-extract-plugin": "^2.6.1"
   }
 }

@@ -2,37 +2,64 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
-const { resolve } = require('@babel/core/lib/vendor/import-meta-resolve');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const { resolve } = require('@babel/core/lib/vendor/import-meta-resolve');
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: 'development',
-  entry: ['@babel/polyfill', './src/index.ts'],
+  context: path.resolve(__dirname, 'src'),
+  entry: ['@babel/polyfill', './index.ts'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   devServer: {
     port: 3000,
     historyApiFallback: true,
   },
   plugins: [
-    new HTMLWebpackPlugin({ template: './src/index.html' }),
+    new HTMLWebpackPlugin({ template: './index.html' }),
     new CleanWebpackPlugin(),
+    //    new MiniCssExtractPlugin(),
   ],
   module: {
     rules: [
       {
-        test: /\.(css|sass)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.s[ac]ss$/,
+        use: [
+          'style-loader',
+          //          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              //            sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              //              sourceMap: true,
+            },
+          },
+        ],
       },
       {
-        test: /\.(jpg|jpeg|png|svg)/,
-        use: ['file-loader'],
+        test: /\.(jpg|jpeg|png|svg|gif)$/,
+        type: 'asset/resource',
+        // generator: {
+        //   filename: '[path][name].[hash][ext][query]',
+        // },
       },
+      // {
+      //   test: /\.(jpg|jpeg|png|svg|gif|json)/,
+      //   use: ['file-loader'],
+      // },
       {
         test: /\.(js|ts|jsx|tsx)$/, // m?jsx
         exclude: /node_modules/,
@@ -49,8 +76,8 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    minimize: false,
-    minimizer: [new TerserWebpackPlugin()],
-  },
+  // optimization: {
+  //   minimize: false,
+  //   minimizer: [new TerserWebpackPlugin()],
+  // },
 };
