@@ -8,7 +8,8 @@
     "watch": "cross-env NODE_ENV=development webpack --mode=development --watch",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode=production --open",
     "stats": "webpack --json> stat.json && webpack-bundle-analyzer webpackStats.json",
-    "build": "cross-env NODE_ENV=production webpack --mode=production"
+    "build": "cross-env NODE_ENV=production webpack --mode=production",
+    "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
   },
   "author": "Vladimir Zakharov",
   "license": "ISC",
@@ -40,6 +41,8 @@
     "eslint-webpack-plugin": "^3.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "sass": "^1.52.2",
     "sass-loader": "^13.0.0",
@@ -53,5 +56,16 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "mini-css-extract-plugin": "^2.6.1"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json}": [
+      "eslint . --fix",
+      "prettier --write ."
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

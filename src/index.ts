@@ -1,10 +1,11 @@
+// git config core.autocrlf false
 import './style/style.sass';
 import content from './assets/content.json';
 import {
-	Component,
-	SectionContent,
-	Sections,
-	// eslint-disable-next-line import/extensions
+    Component,
+    SectionContent,
+    Sections,
+    // eslint-disable-next-line import/extensions
 } from './components/BaseHTMLComponent';
 
 // function htmlComponent(componentType: string, classNames: string[] = []) {
@@ -33,41 +34,38 @@ import {
 // function btnClickHandler(e) {}
 
 function setContent(data: Sections, container: any) {
+    data.map((el: SectionContent) => {
+        const section = new Component(container, {
+            className: el.className,
+        });
+        section.render();
 
-	data.map((el: SectionContent) => {
-		const section = new Component(container, {
-			className: el.className,
-		});
-		section.render();
-
-		new Component(section.el, {
-			className: [`${el.sectionName}-title`],
-			tag: 'h1',
-		})
-			.toHTML(el.header)
-			.render();
-		new Component(section.el, {
-			className: [`${el.sectionName}-description`],
-			tag: 'h4',
-		})
-			.toHTML(el.header)
-			.render();
-		return section;
-	});
-
+        new Component(section.el, {
+            className: [`${el.sectionName}-title`],
+            tag: 'h1',
+        })
+            .toHTML(el.header)
+            .render();
+        new Component(section.el, {
+            className: [`${el.sectionName}-description`],
+            tag: 'h4',
+        })
+            .toHTML(el.header)
+            .render();
+        return section;
+    });
 }
 
-
 function init() {
-	const fragment = document.createDocumentFragment();
-	setContent(content, fragment);
-	return fragment;
+    const fragment = document.createDocumentFragment();
+    setContent(content, fragment);
+    return fragment;
 }
 
 function renderApp() {
-	const app = init();
-	const container = document.querySelector('.container');
-	container.appendChild(app);
+    const app = init();
+    const container = document.querySelector('.container');
+    container.appendChild(app);
 }
 
 renderApp();
