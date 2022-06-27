@@ -8,6 +8,8 @@ import {
     // eslint-disable-next-line import/extensions
 } from './components/BaseHTMLComponent';
 
+let nav: HTMLElement;
+
 // function htmlComponent(componentType: string, classNames: string[] = []) {
 //   const element = document.createElement(componentType);
 //   element.classList.add(classNames.join(' '));
@@ -56,19 +58,38 @@ function setContent(data: Sections, container: any) {
     });
 }
 
+function scrollEventHandler() {
+    if (window.scrollY === 0) {
+        nav.classList.add('nav-hide');
+    } else {
+        nav.classList.remove('nav-hide');
+        setTimeout(() => {
+            nav.classList.add('nav-hide');
+        }, 2000);
+    }
+}
+
+function initNav() {
+    nav = document.querySelector('.nav');
+    window.addEventListener('scroll', scrollEventHandler);
+}
+
 function init() {
-    const fragment = document.createDocumentFragment();
-    setContent(content, fragment);
-    return fragment;
+    initNav();
+    // const fragment = document.createDocumentFragment();
+    // setContent(content, fragment);
+    // return fragment;
 }
 
 function renderApp() {
-    const app = init();
-    const container = document.querySelector('.container');
-    container.appendChild(app);
+    init();
+    // const app = init();
+    // const container = document.querySelector('.container');
+    // container.appendChild(app);
 }
-
-renderApp();
+window.addEventListener('DOMContentLoaded', (event) => {
+    renderApp();
+});
 
 // const contentData = () => async () => {
 //   try {

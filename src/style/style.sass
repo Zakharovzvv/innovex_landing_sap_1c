@@ -6,7 +6,7 @@
   align-items: center
 %grid
   display: grid
-  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr))
   grid-gap: 20px
   grid-auto-flow: dense
 
@@ -24,25 +24,58 @@ body
   max-width: $max-width
   margin: 0 auto
   background-color: $main-color
-  :nth-child(even)
+
+
+.nav
+  @extend %flexCenter
+  height: $nav-height
+  width: 100%
+  top: 0
+  left: 0
+  background: $nav-color
+  position: fixed
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
+  transition: all 0.2s
+  &-hide
+    transform: translateY(-1*$nav-height)
+    box-shadow: none
+  &-link
+    display: block
+    //background: $white-color
+    color: $white-color
+    text-decoration: none
+    margin: 0 1em
+
+
+.content
+  padding-top: $nav-height
+  & .section:nth-child(even)
     background-color: $white-color
+
 .section
   width: 100%
-  height: 400px
+  height: $section-height
+  padding-left: 5%
+  padding-right: 5%
   @extend %flexCenter
 
-.problem
-  background: url("../assets/whells.jpg") center no-repeat
+//.problem
+//  background: url("") center no-repeat
   background-size: cover
 
-//.benefits
-//  @extend %flexCenter
-//
-//.social-prof
-//  @extend %flexCenter
-//
-//.call
-//  @extend %flexCenter
+.benefits
+  flex-direction: column
+
+.social-prof
+  flex-direction: column
+
+.card-group
+  @extend %grid
+  width: 100%
+  height: 80%
+  background: transparent
+.card
+  border: 1px solid grey
 
 .btn
   background-color: $main-buttons-color
